@@ -26,9 +26,4 @@ https://docs.google.com/spreadsheets/d/1VoNiBDhC-ZrbwehCiFvpD9SdzhEHqiLiykqe9NWP
 - IDE：Cloud9
 
 ## 使用素材
-<<<<<<< HEAD
 使用検討中です
-=======
-
-
->>>>>>> origin/main
