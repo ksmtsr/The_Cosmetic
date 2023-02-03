@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="text-center">
+    <div class="font-weight-bold h2 mt-5 mb-5">
+    商品一覧
+    </div>
+    <table class="table table-bordered">
+      <th>商品ID</th><th>商品名</th><th>税抜価格</th>
+      <% @items.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= link_to item.name, admin_item_path(item) %></td>
+        <td>¥<%= item.price %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
