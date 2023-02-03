@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="font-weight-bold h2 mt-5 mb-5 text-center">
+    注文履歴詳細
+  </div>
+<table class="table table-borderless">
+  <tr>
+    <th>購入者</th>
+      <td><%= @order.customer.full_name %></td>
+  </tr>
+  <tr>
+    <th>注文日</th>
+      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+      <td>郵便番号<%= @order.postal_code %></td>
+      <%= @order.address %>
+    <p><%= @order.name %></p>
+  </tr>
+  <tr>
+    <th>支払い方法</th>
+    <td><%= @order.payment_method_i18n %></td>
+  </tr>
+  <tr>
+    <th>注文ステータス</th>
+      <td>
+        <%= form_with model: @order, url: admin_order_path do |f| %>
+        <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+        <%= f.submit "更新", class:"btn btn-sm btn-success" %>
+        <% end %>
+      </td>
+  </tr>
+  <tr>
+    <th>商品合計</th>
+    <td></td>
+  </tr>
+</div>

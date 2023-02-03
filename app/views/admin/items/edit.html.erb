@@ -1,40 +1,53 @@
 <div class="container">
   <div class="font-weight-bold h2 mt-5 mb-5 text-center">
-    商品編集
+    会員情報編集
   </div>
-  <div class="row justify-content-center">
-    <%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
-      <table class="table table-borderless">
-    <tr>
-  <td>商品画像</td>
-<td><%= f.file_field :image, accept: "image/*" %></td>
-  </tr>
-    <tr>
-  <td>商品名</td>
-<td><%= f.text_field :name %></td>
-  </tr>
-    <tr>
-  <td>商品説明</td>
-<td><%= f.text_area :introduction, :size => "30x5"%></td>
-  </tr>
-    <tr>
-  <td>税抜価格</td>
-<td><%= f.text_field :price, :placeholder => "1000" %>円</td>
-  </tr>
-   <tr>
-<td>販売ステータス</td>
-  <td>
-    <% @item.is_active %>
-  <%= f.radio_button :is_active, :true %>
-    販売中
-      <%= f.radio_button :is_active, :false %>
-    販売停止中
-  </td>
+<%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
+  <div class="row">
+    <table class="table table-borderless">
+     <tr>
+      <td>会員ID</td>
+        <td><%= @customer.id %></td>
     </tr>
-      </div>
-        </table>
-      <div class="text-center">
-    <%= f.submit "変更を保存", class: "btn btn-lg btn-success"  %>
-  </div>
-    <% end %>
-      </div>
+    <tr>
+      <td>氏名</td>
+        <td><%= f.text_field :last_name %>
+            <%= f.text_field :first_name %>
+        </td>
+    </tr>
+    <tr>
+      <td>フリガナ</td>
+        <td><%= f.text_field :last_name_kana %>
+            <%= f.text_field :first_name_kana %>
+        </td>
+    </tr>
+    <tr>
+      <td>郵便番号</td>
+        <td><%= f.text_field :postal_code %></td>
+    </tr>
+    <tr>
+      <td>住所</td>
+        <td><%= f.text_field :address, class: "w-75" %></td>
+    </tr>
+    <tr>
+     <td>電話番号</td>
+       <td><%= f.text_field :telephone_number %></td>
+   </tr>
+   <tr>
+     <td>メールアドレス</td>
+        <td><%= f.text_field :email %></td>
+    </tr>
+    <tr>
+       <td>会員ステータス</td>
+         <td>
+         <%= f.radio_button :is_deleted, 'false' %>
+        有効
+        <%= f.radio_button :is_deleted, 'true' %>
+        退会
+         </td>
+    </tr>
+      </table>
+      <%= f.submit "変更を保存", class: "btn btn-lg btn-success mx-auto"  %>
+     <% end %>
+   </div>
+ </div>
