@@ -2,22 +2,28 @@
 <html>
   <head>
     <title>TheCosmetic</title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 <header>
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-  <%= image_tag 'pink.jpg',size: "1000x600", class: "ml-5 mt-5" %>
-  </div>
-<div class="col-md-8">
-  <h1 style="display:inline">The Cosmetic</h1>
-  </div>
+        <div class="card">
+          <img class="card-img" src="/assets/pink.jpg" alt="">
+           <div class="card-img-overlay">
+            <p class="display-2">The Cosmetic</p>
+           </div>
+        </div>
+      </div>
+<div class="col-md-8"></div>
   <% if admin_signed_in? %>
 <div class="btn-group">
 <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary mr-3" %>
@@ -45,7 +51,9 @@
     </div>
   </div>
 </header>
-    <%= yield %>
+<body>
+<%= yield %>
+</body>
   <footer>
     <div class="text-center mt-5">footer</div>
     </footer>

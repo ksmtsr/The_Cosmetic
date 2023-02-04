@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/earlyaccess/notosansjapanese.css');
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,23 +15,36 @@
  *= require_tree .
  *= require_self
  */
-.span, .span > img {
-    margin: 0; padding: 0;
-    border: 0;
+p {
+ line-height: 0.95em;
+ font-weight:bold;
+ color: white;
+ text-shadow:
+ 0 0 0.05em #AAAAAA,
+ 0 0 0.10em #AAAAAA,
+ 0 0 0.15em #AAAAAA,
+ 0 0 0.30em #AAAAAA;
+ //font-variation-settings: 'wght' 20;
+ font-family: Courier New;
 }
 
-.span {
-    position: relative;
-    display: inline-block;
-    font-size: 0;
-    line-height: 0;
+.card {
+  position: relative;
+  width: 800px;
+  height: 500px;
+  overflow: hidden;
 }
 
-.span:after {
-    position: absolute;
-    left: 0; top: 0; right: 0; bottom: 0;
-    -moz-box-shadow: inset 0px 0px 15px 15px #fff;
-    -webkit-box-shadow: inset 0px 0px 15px 15px #fff;
-    box-shadow: inset 0px 0px 15px 15px #fff;
-    content: " ";
+.card::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: inset 0 0 10px 15px #FFF;
+}
+
+.card {
+  width: 200%;
 }
