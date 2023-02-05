@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/earlyaccess/notosansjapanese.css');
-
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -15,36 +13,56 @@
  *= require_tree .
  *= require_self
  */
-p {
- line-height: 0.95em;
- font-weight:bold;
- color: white;
- text-shadow:
- 0 0 0.05em #AAAAAA,
- 0 0 0.10em #AAAAAA,
- 0 0 0.15em #AAAAAA,
- 0 0 0.30em #AAAAAA;
- //font-variation-settings: 'wght' 20;
- font-family: Courier New;
+.display-2 {
+	line-height: 0.95em;
+	font-weight:bold;
+	color: white;
+	text-shadow:
+	0 0 0.05em #AAAAAA,
+	0 0 0.10em #AAAAAA,
+	0 0 0.15em #AAAAAA,
+	0 0 0.30em #AAAAAA;
+	font-family: Courier New;
 }
 
-.card {
-  position: relative;
-  width: 800px;
-  height: 500px;
-  overflow: hidden;
+.card1 {
+	position: relative;
+	width: 800px;
+	height: 500px;
+	overflow: hidden;
 }
 
-.card::after {
-  position: absolute;
-  content: '';
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-shadow: inset 0 0 10px 15px #FFF;
+.card1::after {
+	position: absolute;
+	content: '';
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	box-shadow: inset 0 0 10px 15px #FFF;
 }
 
-.card {
-  width: 200%;
+.card1 {
+  	width: 200%;
 }
+
+.menu a{
+	display: inline-block;
+	color:#ee2d7b;
+	font-size: 120%;
+	transition: .3s;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+.menu a:hover{
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.box1 {
+	margin: 1em auto;
+	padding:1em;
+	border:double 8px #DDDDDD;
+	background-color: white;
+}
+
