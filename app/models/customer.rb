@@ -21,4 +21,17 @@ class Customer < ApplicationRecord
     self.last_name_kana + self.first_name_kana
   end
 
+  def self.guest
+    find_or_create_by!(email: 'guest@test.com') do |user|
+      user.password = SecureRandom.urlsafe_base64 # ランダムなパスワードを生成
+      user.last_name = 'ゲスト'
+      user.first_name = 'ゲスト'
+      user.last_name_kana = 'ゲスト'
+      user.first_name_kana = 'ゲスト'
+      user.postal_code = '0000000'
+      user.address = '大阪府'
+      user.telephone_number = '00000000000'
+    end
+  end
+
 end

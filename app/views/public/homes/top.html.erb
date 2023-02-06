@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <div class="card2 mt-5 ">
+      <div class="card2 mt-5">
         <img class="card-img" src="/assets/flower.jpg" alt="">
            <div class="card-img-overlay mt-3">
            <div class="box1 text-center">
@@ -11,6 +11,26 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-md-8 text-center">
+      <h2 class="mb-5">RANKING</h2>
+      <% @items.each do |item| %>
+        <div class="mb-2">
+          <div class="row">
+            <div class="col-md-6">
+              <% if item.image.attached? %>
+                <%= image_tag item.image, class: 'img-fluid', size: '120x120' %>
+              <% end %>
+            </div>
+            <div class="col-md-6 text-left">
+              <h5><%= item.name %></h5>
+              <%= simple_format(item.introduction) %>
+              &yen; <%= item.price %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= paginate @items %>
     </div>
   </div>
 </div>

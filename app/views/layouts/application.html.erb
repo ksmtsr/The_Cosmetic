@@ -25,22 +25,22 @@
     </div>
   </div>
   <div class="menu">
-<%= link_to "Guest Login", users_guest_sign_in_path, method: :post, class: "text-decoration-none text-secondary mr-5" %>
+<%= link_to "Guest Login", customers_guest_sign_in_path, method: :post, class: "text-decoration-none text-secondary mr-5" %>
   </div>
     <div class="text-center mt-5 mb-5">
       <% if admin_signed_in? %>
         <div class="menu">
-          <%= link_to "商品一覧", admin_items_path, class: "text-decoration-none text-secondary　mr-5" %>
-          <%= link_to "会員一覧", admin_customers_path, class: "text-decoration-none text-secondary mr-5" %>
-          <%= link_to "注文履歴一覧", admin_root_path, class: "text-decoration-none text-secondary mr-5" %>
-          <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "text-decoration-none text-secondary mr-5" %>
+          <%= link_to "Items", admin_items_path, class: "text-decoration-none text-secondary　mr-5" %>
+          <%= link_to "Customers", admin_customers_path, class: "text-decoration-none text-secondary mr-5" %>
+          <%= link_to "Orders", admin_root_path, class: "text-decoration-none text-secondary mr-5" %>
+          <%= link_to 'Log out', destroy_admin_session_path, method: :delete, class: "text-decoration-none text-secondary mr-5" %>
         </div>
       <% elsif customer_signed_in? %>
         <div class="menu">
-          <%= link_to "マイページ", customers_path, class: "text-decoration-none text-secondary mr-5" %>
-          <%= link_to "商品一覧", items_path, class: "text-decoration-none text-secondary mr-5" %>
-          <%= link_to "カート", cart_items_path, class: "text-decoration-none text-secondary mr-5" %>
-          <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "text-decoration-none text-secondary mr-5" %>
+          <%= link_to "My page", root_path, class: "text-decoration-none text-secondary mr-5" %>
+          <%= link_to "Items", items_path, class: "text-decoration-none text-secondary mr-5" %>
+          <%= link_to "Cart Item", root_path, class: "text-decoration-none text-secondary mr-5" %>
+          <%= link_to 'Log out', destroy_customer_session_path, method: :delete, class: "text-decoration-none text-secondary mr-5" %>
         </div>
       <% else %>
         <div class="menu">

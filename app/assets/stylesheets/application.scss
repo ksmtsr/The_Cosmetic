@@ -48,7 +48,6 @@
 
 .menu a{
 	display: inline-block;
-	color:#ee2d7b;
 	font-size: 120%;
 	transition: .3s;
 	-webkit-transform: scale(1);
@@ -66,3 +65,10 @@
 	background-color: white;
 }
 
+h2 {
+	font-family: Courier New;
+}
+
+.card2 {
+	height: 200px;
+}
