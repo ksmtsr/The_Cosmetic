@@ -27,7 +27,7 @@
   <div class="menu">
 <%= link_to "Guest Login", customers_guest_sign_in_path, method: :post, class: "text-decoration-none text-secondary mr-5" %>
   </div>
-    <div class="text-center mt-5 mb-5">
+    <div class="text-center mt-4 mb-4">
       <% if admin_signed_in? %>
         <div class="menu">
           <%= link_to "Items", admin_items_path, class: "text-decoration-none text-secondary　mr-5" %>
@@ -55,7 +55,4 @@
 <body>
 <%= yield %>
 </body>
-  <footer class="border-top mt-5 mb-5">
-
-  </footer>
 </html>
