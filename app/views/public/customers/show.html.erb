@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="font-weight-bold h2 mt-5 mb-5 text-center">
+    MY PAGE
+  </div>
+<div class="row">
+  <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="h5 mt-3 font-weight-bold">登録情報</div>
+      <div class="text-right mb-2">
+      <%= link_to "注文情報一覧", root_path, class: "btn btn-outline-info" %>
+      <%= link_to "口コミ一覧", root_path, class: "btn btn-outline-info" %>
+      </div>
+        <table class="table table-bordered">
+          <tr>
+            <th class="col-md-4">氏名</th>
+            <td><%= @customer.full_name %></td>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <td><%= @customer.full_name_kana %></td>
+          </tr>
+          <tr>
+            <th>郵便番号</th>
+            <td><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @customer.email %></td>
+          </tr>
+        </table>
+        <%= link_to "編集する", edit_customers_path, class: "btn btn-outline-info" %>
+    </div>
+  </div>
+</div>
