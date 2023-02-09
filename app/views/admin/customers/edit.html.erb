@@ -6,35 +6,60 @@
     <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
       <table class="table table-borderless">
     <tr>
-  <td>会員ID</td>
-<td><%= f.text_field :id %></td>
-  </tr>
-    <tr>
-  <td>商品名</td>
-<td><%= f.text_field :name %></td>
-  </tr>
-    <tr>
-  <td>商品説明</td>
-<td><%= f.text_area :introduction, :size => "30x5"%></td>
-  </tr>
-    <tr>
-  <td>税抜価格</td>
-<td><%= f.text_field :price, :placeholder => "1000" %>円</td>
-  </tr>
-   <tr>
-<td>販売ステータス</td>
-  <td>
-    <% @item.is_active %>
-  <%= f.radio_button :is_active, :true %>
-    販売中
-      <%= f.radio_button :is_active, :false %>
-    販売停止中
-  </td>
+        <td class="text-left">会員ID</td>
+        <td class="text-left"><%= f.text_field :id %></td>
     </tr>
-      </div>
-        </table>
-      <div class="text-center">
-    <%= f.submit "変更を保存", class: "btn btn-lg btn-success"  %>
+    <tr>
+        <td class="text-left">氏名</td>
+        <td class="text-left"><%= f.text_field :last_name, class: "col-auto" %>
+        <%= f.text_field :first_name, class: "col-auto" %></td>
+    </tr>
+    <tr>
+        <td class="text-left">フリガナ</td>
+        <td class="text-left"><%= f.text_field :last_name_kana, class: "col-auto" %>
+        <%= f.text_field :first_name_kana, class: "col-auto" %></td>
+    </tr>
+    <tr>
+        <td class="text-left">メールアドレス</td>
+        <td class="text-left"><%= f.email_field :email, class: "col-auto", autofocus: true, autocomplete: "email" %></td>
+    </tr>
+    <tr>
+        <td class="text-left">郵便番号</td>
+        <td class="text-left"><%= f.text_field :postal_code, class: "col-auto", autofocus: true, autocomplete: "postal_code" %></td>
+    </tr>
+    <tr>
+        <td class="text-left">住所</td>
+        <td class="text-left"><%= f.text_field :address, class: "col-auto", autofocus: true, autocomplete: "address" %></td>
+    </tr>
+    <tr>
+        <td class="text-left">電話番号(ハイフン無し)</td>
+        <td class="text-left"><%= f.text_field :telephone_number, class: "col-auto" %></td>
+    </tr>
+    <tr>
+        <td class="text-left">パスワード
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em></td>
+        <% end %>
+        <br />
+        <td class="text-left"><%= f.password_field :password, class: "col-auto", autocomplete: "new-password"%></td>
+    </tr>
+    <tr>
+        <td class="text-left">パスワード(確認用)</td>
+        <td class="text-left"><%= f.password_field :password_confirmation, class: "col-auto", autocomplete: "new-password" %></td>
+    </tr>
+    <tr>
+        <td class="text-left">会員ステータス</td>
+        <td class="text-left">
+          <%= f.radio_button :is_deleted, 'false' %>
+          退会
+          <%= f.radio_button :is_deleted, 'true' %>
+          有効
+        </td>
+    </tr>
   </div>
-    <% end %>
-      </div>
+      </table>
+        <div class="text-center">
+          <%= f.submit "変更を保存", class: "btn btn-lg btn-success"  %>
+        </div>
+  <% end %>
+</div>

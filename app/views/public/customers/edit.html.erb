@@ -6,44 +6,44 @@
   <div class="row justify-content-center">
     <%= form_with model: @customer, url: customer_update_path  do |f| %>
     <table class="table table-borderless">
-      <tr>
+    <tr>
         <td class="text-left">氏名</td>
         <td class="text-left"><%= f.text_field :last_name, class: "col-auto" %>
         <%= f.text_field :first_name, class: "col-auto" %></td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td class="text-left">フリガナ</td>
         <td class="text-left"><%= f.text_field :last_name_kana, class: "col-auto" %>
         <%= f.text_field :first_name_kana, class: "col-auto" %></td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td class="text-left">メールアドレス</td>
         <td class="text-left"><%= f.email_field :email, class: "col-auto", autofocus: true, autocomplete: "email" %></td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td class="text-left">郵便番号</td>
         <td class="text-left"><%= f.text_field :postal_code, class: "col-auto", autofocus: true, autocomplete: "postal_code" %></td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td class="text-left">住所</td>
         <td class="text-left"><%= f.text_field :address, class: "col-auto", autofocus: true, autocomplete: "address" %></td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td class="text-left">電話番号(ハイフン無し)</td>
         <td class="text-left"><%= f.text_field :telephone_number, class: "col-auto" %></td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td class="text-left">パスワード
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> 文字以上)</em></td>
         <% end %>
         <br />
         <td class="text-left"><%= f.password_field :password, class: "col-auto", autocomplete: "new-password"%></td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td class="text-left">パスワード(確認用)</td>
         <td class="text-left"><%= f.password_field :password_confirmation, class: "col-auto", autocomplete: "new-password" %></td>
-      </tr>
+    </tr>
     </table>
     <%= f.submit "編集内容を保存", class: "btn btn-lg btn-success" %>
     <% end %>

@@ -29,9 +29,10 @@ Rails.application.routes.draw do
     patch 'customers/withdrawal' => 'customers#withdrawal', as: 'customer_withdrawal'
     resource :customers, only: [:show]
   end
+
   namespace :admin do
     root to: 'homes#top'
-
+    resources :customers
   end
 
 
