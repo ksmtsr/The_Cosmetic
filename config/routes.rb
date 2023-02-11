@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     get 'items' => 'items#index', as: 'items'
     resources :items
 
+   post 'cart_items/confirm' => 'cart_items#confirm', as: 'cart_items_confirm'
+    resources :cart_items
+
     get 'customers/information/edit' => 'customers#edit', as: 'edit_customers'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
     patch 'customers/update' => 'customers#update', as: 'customer_update'

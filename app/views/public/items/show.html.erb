@@ -1,11 +1,28 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-4 mt-5 mb-5">
+      <div class="mt-5"></div>
       <%= image_tag @items.image, size: "350x250" %>
     </div>
-    <div class="col-md-4 h2 mt-5 font-weight-bold">
-      <%= @items.name %>
-      
+    <div class="col-4 mt-5">
+      <div class="mt-5"></div>
+      <span class="h4 font-weight-bold">
+        <%= @items.name %>
+      </span>
+      <span classs="button">
+        <%= link_to "口コミを投稿する", root_path, class: "btn btn-sm btn-outline-info" %>
+        </span>
+      <div class="text-left mt-3">
+        <%= @items.introduction %>
+      </div>
+      <div class="col-8 mt-5 pl-5">
+        &yen;<%= @items.with_tax_price %><span>（税込）</span>
+      </div>
+      <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+        <%= f.select :amount, *[1..20],{ include_blank: '個数選択'}, class: "btn-sm btn-info dropdown-toggle mt-5 " %>
+          <%= f.hidden_field :item_id,value: @items.id %>
+        <%= f.submit "カートに入れる", class: "btn-sm btn-secondary mt-5" %>
+      <% end %>
     </div>
   </div>
 </div>

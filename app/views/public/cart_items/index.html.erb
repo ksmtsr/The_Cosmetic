@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="col-md-8 h5 mt-5 mb-5 font-weight-bold">
+    ショッピングカート
+  </div>
+    <div class="border">
+      <% @cart_items.each do |cart_item| %>
+        <div class="row justify-content-center mt-5 mb-5">
+          <div class="col-md-4">
+            <% if cart_item.item.image.attached? %>
+            <%= image_tag cart_item.item.image, size: "200x200" %>
+            <% end %>
+          </div>
+          <div class="col-md-6">
+            <%= cart_item.item.name %></br>
+              &yen;<%= cart_item.item.with_tax_price %><span>（税込）</span>
+              <% cart_item = CartItem.find(cart_item.id) %>
+        <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
+             <%= f.select :amount, *[1..20], value: cart_item.amount %>
+             <%= f.hidden_field :item_id, value: cart_item.item_id %>
+          <% if cart_item.customer == current_customer %>
+             <%= f.submit "変更", class: "btn btn-sm btn-info mt-2" %>
+          <% end %>
+
+
+            <%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger btn-sm mt-5" %>
+          </div>
+          <div class="border col-10 mt-5"></div>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+</div>
