@@ -31,6 +31,11 @@ Rails.application.routes.draw do
     patch 'customers/update' => 'customers#update', as: 'customer_update'
     patch 'customers/withdrawal' => 'customers#withdrawal', as: 'customer_withdrawal'
     resource :customers, only: [:show]
+
+    post 'orders/confirm' => 'orders#confirm', as: 'orders_confirm'
+    get 'orders/complete' => 'orders#complete', as: 'orders_complete'
+    resources :orders
+
   end
 
   namespace :admin do

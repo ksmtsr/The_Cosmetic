@@ -10,23 +10,44 @@
             <%= image_tag cart_item.item.image, size: "200x200" %>
             <% end %>
           </div>
-          <div class="col-md-6">
-            <%= cart_item.item.name %></br>
-              &yen;<%= cart_item.item.with_tax_price %><span>（税込）</span>
-              <% cart_item = CartItem.find(cart_item.id) %>
-        <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
-             <%= f.select :amount, *[1..20], value: cart_item.amount %>
-             <%= f.hidden_field :item_id, value: cart_item.item_id %>
-          <% if cart_item.customer == current_customer %>
-             <%= f.submit "変更", class: "btn btn-sm btn-info mt-2" %>
-          <% end %>
-
-
-            <%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger btn-sm mt-5" %>
+        <div class="col-md-4">
+          <div class="h3 font-weight-bold"><%= cart_item.item.name %></br></div>
+            <div class="mt-5 h5">
+             &yen;<%= cart_item.item.with_tax_price %><span>（税込）</span>
+            </div>
+          <div class="mt-5 pl-5">
+            <% cart_item = CartItem.find(cart_item.id) %>
+              <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
+              <div class="text-right">数量
+                <%= f.select :amount, *[1..20], value: cart_item.amount %>
+                   <%= f.hidden_field :item_id, value: cart_item.item_id %>
+                <% if cart_item.customer == current_customer %>
+               <%= f.submit "変更", class: "btn btn-sm btn-outline-info" %>
+            <% end %>
+            </div>
+          </div>
+            <div class="float-right">
+            <%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-outline-danger btn-sm mt-5" %>
+            </div>
           </div>
           <div class="border col-10 mt-5"></div>
         </div>
-        <% end %>
+          <% end %>
       <% end %>
     </div>
+    <div class="row">
+      <div class="col-md-8">
+        <%= link_to "お買い物を続ける", items_path, class: "btn btn-secondary rounded-0 mt-5" %>
+      </div>
+    <% @cart_items.each do |cart_item| %>
+   <% @total += cart_item.subtotal %>
+   <% end %>
+    <div class="d-flex flex-row bd-highlight font-weight-bold mt-4 border-bottom">
+      <div class="p-2 bd-highlight">合計金額</div>
+      <div class="h4 p-2 bd-highlight">&yen;<%= @total %></div>
+    </div>
+    </div>
+      <div class="d-flex align-items-center justify-content-center">
+       <%= link_to "レジに進む", new_order_path(@orders), class: "btn btn-info rounded-pill w-25" %>
+      </div>
 </div>
