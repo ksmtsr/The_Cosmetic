@@ -49,7 +49,11 @@
     <% end %>
   </div>
     <div class="text-right">
-    <%= link_to "退会する", customer_unsubscribe_path, class: "btn btn-danger" %>
+        <% if @customer.first_name === "ゲスト" %>
+          <%= link_to "退会する", root_path, class: "btn btn-danger" %>
+        <% else %>
+          <%= link_to "退会する", customer_unsubscribe_path, class: "btn btn-danger" %>
+        <% end %>
     </div>
   </div>
 </div>

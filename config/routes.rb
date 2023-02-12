@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
 
 
+  
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
 }
 
 
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-    sessions: "admin/sessions"
-  }
+  #devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    #sessions: "admin/sessions"
+  #}
 
   devise_scope :customer do
     post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
@@ -23,7 +24,8 @@ Rails.application.routes.draw do
     get 'items' => 'items#index', as: 'items'
     resources :items
 
-   post 'cart_items/confirm' => 'cart_items#confirm', as: 'cart_items_confirm'
+    delete 'cart_item/destroy_all' => 'cart_items#destroy_all'
+    post 'cart_items/confirm' => 'cart_items#confirm', as: 'cart_items_confirm'
     resources :cart_items
 
     get 'customers/information/edit' => 'customers#edit', as: 'edit_customers'
@@ -38,10 +40,10 @@ Rails.application.routes.draw do
 
   end
 
-  namespace :admin do
-    root to: 'homes#top'
-    resources :customers
-  end
+  # namespace :admin do
+  #   root to: 'homes#top'
+  #   resources :customers
+  # end
 
 
 end

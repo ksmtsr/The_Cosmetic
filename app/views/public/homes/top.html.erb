@@ -15,11 +15,11 @@
     <div class="col-md-8 text-center">
       <h2 class="mt-2 mb-3 mr-5 font-weight-bold text-secondary">RANKING</h2>
       <% @items.each do |item| %>
-        <div class="mb-2">
+        <div class="mb-3">
           <div class="row">
             <div class="col-md-6 border-bottom">
               <%= link_to item_path(item) do %>
-                <%= image_tag item.image, class: 'img-fluid', size: '110x130' %>
+                <%= image_tag item.image, size: '150x150' %>
               <% end %>
             </div>
             <div class="col-md-6 text-left border-bottom">

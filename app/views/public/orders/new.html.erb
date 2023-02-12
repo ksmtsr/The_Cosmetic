@@ -1,41 +1,36 @@
 <div class="container">
-  <div class="text-center">
-    <div class="font-weight-bold h2 mt-5 mb-5">
+  <div class="row">
+    <div class="font-weight-bold h2 mt-5 mb-5 pl-5">
     注文情報入力
     </div>
 </div>
   <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
     <div class="row">
-      <div class="col-md-3"></div>
       <div class="col-md-6 h5 font-weight-bold">
         支払い方法
       </div>
-      <div class="col-md-4"></div>
-      <div class="col-md-8">
+      <div class="col-md-10 pl-5">
         <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
         <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
       </div>
-      <div class="col-md-4"></div>
-      <div class="col-md-8">
+
+      <div class="col-md-10 pl-5">
         <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
         <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3"></div>
       <div class="col-md-6 h5 font-weight-bold">
         お届け先
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-6 h5">
+      <div class="col-md-6 h5 pl-5">
         <%= f.radio_button :select_address, 1 %>
         <%= f.label :customer_address, "ご自身の住所" %>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4"></div>
       <div class="col-md-6 mb-2 pl-5">
         〒<%= current_customer.postal_code %>
         <%= current_customer.address %></br>
@@ -43,41 +38,37 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-6 h5">
-        <%= f.radio_button :select_address, 3 %>
+      <div class="col-md-6 h5 pl-5">
+        <%= f.radio_button :select_address, 2 %>
         <%= f.label :new_address, "新しいお届け先" %>
       </div>
     </div>
     <div class="form-group row pl-5">
-      <div class="col-md-4"></div>
       <div class="col-md-3">
         郵便番号(ハイフン無し)
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 pl-5">
         <%= f.text_field :postal_code, class: "w-35", autofocus: true, autocomplete: "postal_code" %>
       </div>
     </div>
     <div class="form-group row pl-5">
-      <div class="col-md-4"></div>
       <div class="col-md-3">
         住所
       </div>
-      <div class="col-md-3">
-        <%= f.text_field :address, class: "w-100", autofocus: true, autocomplete: "address" %>
+      <div class="col-md-3 pl-5">
+        <%= f.text_field :address,size: 50, autofocus: true, autocomplete: "address" %>
       </div>
     </div>
     <div class="form-group row pl-5">
-      <div class="col-md-4"></div>
       <div class="col-md-3">
         宛名
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 pl-5">
         <%= f.text_field :name, class: "w-35" %>
       </div>
     </div>
     <div class="text-center">
-      <%= f.submit "確認画面に進む", class:"btn btn-primary" %>
+      <%= f.submit "確認画面に進む", class:"btn btn-info rounded-pill w-25 mb-5 mt-5" %>
     </div>
     <% end %>
 </div>

@@ -44,13 +44,14 @@
             <td class="text-left">パスワード(確認用)</td>
             <td><%= f.password_field :password_confirmation, class: "col-auto", autocomplete: "new-password" %></td>
         </tr>
-  </div>
-      </table>
-    </div>
-  <div class="text-center">
+      </div>
+    </table>
+      <div class="text-center">
     <%= f.submit "新規登録", class: "btn btn-lg btn-success" %>
     <% end %>
   </div>
-    </div>
+  </div>
+
+</div>
   既に登録済みの方
   <%= link_to "こちら", new_customer_session_path(@customer) %>からログインしてください。

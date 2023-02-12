@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="text-center">
+    <div class="font-weight-bold h2 mt-5 mb-5">
+    注文情報確認
+    </div>
+  </div>
+  <div class="border">
+      <% @cart_items.each do |cart_item| %>
+        <div class="row justify-content-center mt-5 mb-5">
+          <div class="col-md-4">
+            <% if cart_item.item.image.attached? %>
+            <%= image_tag cart_item.item.image, size: "150x150" %>
+            <% end %>
+          </div>
+        <div class="col-md-4">
+          <div class="h4 font-weight-bold">
+            <%= cart_item.item.name %></br></div>
+            <div class="mt-5 h5">
+             &yen;<%= cart_item.item.with_tax_price %><span>（税込）</span>
+            </div>
+            <div class="mt-5 pl-5">
+              数量<%= cart_item.amount %>
+            </div>
+        </div>
+          <div class="border col-10 mt-5"></div>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-md-6 pl-5">
+      <div class="col-md-4 h5 font-weight-bold">支払い方法</div>
+      <div class="col-md-4"><%= @order.payment_method_i18n %></div>
+
+         <div class="col-md-4 h5 mt-3 font-weight-bold">お届け先</div>
+         <div class="col-md-12">
+           <%= @order.postal_code %>
+           <%= @order.address %>
+           <%= @order.name %>
+         </div></br>
+         </div>
+         <% @cart_items.each do |cart_item| %>
+          <% @total += cart_item.subtotal %>
+        <% end %>
+        <div class="col-md-6 pl-5">
+          <span>送料</span>
+          <%= POSTAGE %>円</br>
+          <span>商品合計</span>
+          <%= @total %>円</br>
+          <div class="mt-5 pl-5 border_bottom">
+          <span class="h5">請求金額</span>
+          <%= POSTAGE + @total %>円
+          </div>
+        </div>
+      </div>
+      <%= form_with model: @order do |f| %>
+      <div class="text-center">
+     <%= f.submit "注文を確定する", class: "btn btn-info rounded-pill w-25 mt-5 mb-5" %>
+   <%= f.hidden_field :postal_code, value: @order.postal_code %>
+   <%= f.hidden_field :payment_method, value: @order.payment_method %>
+   <%= f.hidden_field :address, value: @order.address %>
+   <%= f.hidden_field :postage, value: POSTAGE %>
+   <%= f.hidden_field :amount, value: @total + POSTAGE %>
+   <%= f.hidden_field :name, value: @order.name %>
+   <% end %>
+    </div>
+    </div>
+</div>
