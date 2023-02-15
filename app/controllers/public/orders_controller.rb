@@ -37,6 +37,17 @@ class Public::OrdersController < ApplicationController
       @total = 0
   end
 
+  def index
+      @orders = current_customer.orders
+      @cart_items = CartItem.all
+      @total = 0
+  end
+
+  def show
+      @order = Order.find(params[:id])
+      @total = 0
+  end
+
 
 
 
@@ -44,7 +55,7 @@ class Public::OrdersController < ApplicationController
 
 
   def order_params
-      params.require(:order).permit(:payment_method, :postal_code, :address, :customer_id, :name, :postage, :amount)
+      params.require(:order).permit(:image, :payment_method, :postal_code, :address, :customer_id, :name, :postage, :payment, :order_status)
   end
 
 end

@@ -18,19 +18,19 @@
         <div class="card1">
           <img class="card-img" src="/assets/pink.jpg" alt="">
            <div class="card-img-overlay">
-            <div class="display-2">The Cosmetic</p>
+            <div class="display-2">The Cosmetic</div>
            </div>
         </div>
       </div>
     </div>
   </div>
   <div class="menu">
-<%= link_to "Guest Login", customers_guest_sign_in_path, method: :post, class: "text-decoration-none text-secondary mr-5" %>
+<%= link_to "Guest Login", customers_guest_sign_in_path, method: :post, class: "text-decoration-none text-secondary pl-5" %>
   </div>
     <div class="text-center mt-4 mb-4">
       <% if admin_signed_in? %>
         <div class="menu">
-          <%= link_to "Items", admin_items_path, class: "text-decoration-none text-secondary　mr-5" %>
+          <%= link_to "Items", admin_items_path, class: "text-decoration-none text-secondary mr-5" %>
           <%= link_to "Customers", admin_customers_path, class: "text-decoration-none text-secondary mr-5" %>
           <%= link_to "Orders", admin_root_path, class: "text-decoration-none text-secondary mr-5" %>
           <%= link_to 'Log out', destroy_admin_session_path, method: :delete, class: "text-decoration-none text-secondary mr-5" %>

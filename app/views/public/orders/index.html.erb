@@ -1,0 +1,57 @@
+<!--<div class="container">-->
+<!--  <div class="text-center">-->
+<!--    <div class="font-weight-bold h2 mt-5 mb-5">-->
+<!--    注文履歴一覧-->
+<!--    </div>-->
+<!--    <div class="border">-->
+<!--    <%# @orders.each do |order| %>-->
+<!--      <div class="row justify-content-center mt-5 mb-5">-->
+<!--        <div class="col-md-4">-->
+<!--          <%# if order.image.attached? %>-->
+<!--          <%#= image_tag order.item.image, size: "200x200" %>-->
+<!--          <%# end %>-->
+<!--        </div>-->
+<!--        <div class="col-md-4">-->
+<!--        <div class="h3 font-weight-bold"><%#= order.name %></br></div>-->
+<!--          <div class="mt-5 h5">-->
+<!--           &yen;<%#= order.item.with_tax_price %><span>（税込）</span>-->
+<!--          </div>-->
+<!--      </div>-->
+<!--      </div>-->
+<!--      <%# end %>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="container">
+  <div class="mt-5 mb-5">
+    <headline>注文履歴一覧</headline>
+     </div>
+   <table class="table table-bordered">
+  <thead>
+ <tr bgcolor="#f5f5f5">
+    <th>注文日</th><th>配送先</th>
+      <th>注文商品</th><th>支払金額</th>
+   <th>ステータス</th><th>注文詳細</th>
+ </thead>
+</tr>
+ <tbody>
+   <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+       <td><%= order.address %></br>
+       <%= order.name %></td>
+       <td>
+         <% order.order_details.each do |order_detail| %>
+      <%= order_detail.item.name %></br>
+      <% @total += order_detail.subtotal %>
+      <% end %>
+      </td>
+      <td><%= POSTAGE + @total %>円</td>
+      <td><%= order.order_status_i18n %></td>
+      <td><%= link_to "表示する", order_path(order), class: "btn btn-primary btn-sm" %></td>
+    </tr>
+   <% end %>
+ </tbody>
+   </table>
+ </div>

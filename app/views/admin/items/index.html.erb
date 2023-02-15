@@ -3,6 +3,9 @@
     <div class="font-weight-bold h2 mt-5 mb-5">
     商品一覧
     </div>
+    <div class="text-left mb-5 pl-5">
+    <%= link_to "商品新規登録", new_admin_item_path(@items), class: "btn btn-info rounded-5" %>
+    </div>
     <table class="table table-bordered">
       <th>商品ID</th><th>商品名</th><th>税抜価格</th>
       <% @items.each do |item| %>

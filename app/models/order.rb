@@ -2,10 +2,13 @@ class Order < ApplicationRecord
 
   enum payment_method: { credit_card: 0, transfer: 1 }
 
-  enum status: { waiting_for_payment: 0, payment_confirmation: 1, preparing_to_ship: 2, sent: 3 }
+  enum order_status: { waiting_for_payment: 0, payment_confirmation: 1, preparing_to_ship: 2, sent: 3 }
+
+  has_one_attached :image
 
   belongs_to :customer
   has_many :order_details, dependent: :destroy
+
 
   def address_display
   "〒" + postal_code + " " + address + " " + name

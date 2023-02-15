@@ -2,36 +2,67 @@
   <div class="font-weight-bold h2 mt-5 mb-5 text-center">
     注文履歴詳細
   </div>
-<table class="table table-borderless">
-  <tr>
-    <th>購入者</th>
-      <td><%= @order.customer.full_name %></td>
-  </tr>
-  <tr>
-    <th>注文日</th>
-      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-  </tr>
-  <tr>
-    <th>住所</th>
-      <td>郵便番号<%= @order.postal_code %></td>
-      <%= @order.address %>
-    <p><%= @order.name %></p>
-  </tr>
-  <tr>
-    <th>支払い方法</th>
-    <td><%= @order.payment_method_i18n %></td>
-  </tr>
-  <tr>
-    <th>注文ステータス</th>
-      <td>
+  <div class="row pr-5 border-bottom">
+    <div class="col-md-4"></div>
+      <div class="col-md-3 font-weight-bold">購入者</div>
+      <div class="col-md-3 mb-3">
+        <%= @order.customer.full_name %>
+      </div>
+    <div class="col-md-4"></div>
+      <div class="col-md-3 font-weight-bold">注文日</div>
+      <div class="col-md-3 mb-3">
+        <%= @order.created_at.strftime('%Y/%m/%d') %>
+      </div>
+    <div class="col-md-4"></div>
+      <div class="col-md-3 font-weight-bold">配送先</div>
+      <div class="col-md-3 mb-3">
+        〒<%= @order.postal_code %>
+        <%= @order.address %></br>
+        <%= @order.name %></div>
+    <div class="col-md-4"></div>
+      <div class="col-md-3 font-weight-bold">支払い方法</div>
+      <div class="col-md-3 mb-3">
+        <%= @order.payment_method_i18n %>
+      </div>
+    <div class="col-md-4"></div>
+      <div class="col-md-3 font-weight-bold">注文ステータス</div>
+      <div class="col-md-3 mb-3">
         <%= form_with model: @order, url: admin_order_path do |f| %>
-        <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+        <%= f.select :status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
         <%= f.submit "更新", class:"btn btn-sm btn-success" %>
         <% end %>
-      </td>
-  </tr>
-  <tr>
-    <th>商品合計</th>
-    <td></td>
-  </tr>
-</div>
+      </div>
+  </div>
+  <% sum = 0 %>
+  <% @order_details.each do |order_detail| %>
+    <%= form_with model: order_detail, url: admin_order_order_detail_path(@order,order_detail) do |f| %>
+    <div class="row mt-3">
+      <div class="col-md-2"></div>
+        <%= image_tag order_detail.item.image, size: "150x150" %>
+      <div class="col-md-3 mt-3">
+        <%= order_detail.item.name %></br>
+        &yen;<%= order_detail.item.with_tax_price %></br>
+        数量 <%= order_detail.amount %></br>
+      </div>
+    <% sum = sum + order_detail.item.with_tax_price*order_detail.amount %>
+    </div>
+    <% end %>
+  <% end %>
+    <div class="float-right">
+  <table class ="table-sm table-borderless">
+    <tr>
+      <th>商品合計</th>
+      <td><%= sum %></td>
+    </tr>
+    <tr>
+      <th>送料</th>
+      <td><%= POSTAGE %></td>
+    </tr>
+    <tr>
+      <th>お支払い金額</th>
+      <td><%= sum + POSTAGE %></td>
+    </tr>
+  </table>
+  </div>
+  </div>
+
