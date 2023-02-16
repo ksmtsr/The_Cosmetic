@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     post 'orders/confirm' => 'orders#confirm', as: 'orders_confirm'
     get 'orders/complete' => 'orders#complete', as: 'orders_complete'
     resources :orders
+    resources :comments
 
   end
 
@@ -49,6 +50,7 @@ Rails.application.routes.draw do
   end
 
     resources :items
+
 
   end
 end

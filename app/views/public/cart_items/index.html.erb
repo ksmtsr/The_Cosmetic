@@ -48,6 +48,9 @@
 </div>
 </div>
   <div class="d-flex align-items-center justify-content-center">
-   <%= link_to "レジに進む", new_order_path(@orders), class: "btn btn-info rounded-pill w-25" %>
+    <% if @cart_items.blank? %>
+    <% else %>
+     <%= link_to "レジに進む", new_order_path(@orders), class: "btn btn-info rounded-pill w-25" %>
+    <% end %>
   </div>
 </div>

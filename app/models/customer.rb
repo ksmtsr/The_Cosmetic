@@ -7,6 +7,7 @@ class Customer < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :addresses, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :comments,dependent: :destroy
 
 #ログイン時に退会済みのユーザーが同じアカウントでログイン出来ないようにするする制約。
   def active_for_authentication?
