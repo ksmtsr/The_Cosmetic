@@ -18,6 +18,18 @@ class Public::CommentsController < ApplicationController
     @comments = Comment.all
   end
 
+  def edit
+    @comment = current_customer.comment
+    @comment.customer_id = current_customer.id
+    @item_id = params[:item_id]
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    @comment.update(comment_params)
+    redirect_to item_comments_path(current_customer.id)
+  end
+
   private
 
   def comment_params
