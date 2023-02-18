@@ -4,13 +4,14 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
   end
 
-  def edit
-    @customer = current_customer
-      if @customer == current_customer
-            render "edit"
-      else
-            redirect_to customer_path
-      end
+
+  def create
+    @customer = Customer.new(customer_params)
+    if @customer.save
+      redirect_to customers_path(@customer.id)
+    else
+      render :edit
+    end
   end
 
   def withdrawal
@@ -21,16 +22,30 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @customer = current_customer
+      if @customer == current_customer
+            render "edit"
+      else
+            redirect_to customer_path
+      end
+  end
+
   def update
     @customer = current_customer
-    @customer.update(customer_params)
+    if @customer.update(customer_params)
+    bypass_sign_in(@customer)
     redirect_to customers_path
+    else
+      render 'edit'
+    end
   end
 
   private
 
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name_kana,:first_name, :last_name_kana,:email, :postal_code,:address, :telephon_number, :is_deleted )
+    params.require(:customer).permit(:last_name, :first_name_kana,:first_name, :last_name_kana,:email, :postal_code,:address, :telephone_number, :password )
   end
+
 
 end

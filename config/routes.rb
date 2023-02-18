@@ -22,7 +22,12 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about', as: 'about'
     get 'item/:id' => 'items#show', as: 'item'
     get 'items' => 'items#index', as: 'items'
-    resources :items
+
+    resources :items do
+    resources :comments
+  end
+
+
 
     delete 'cart_item/destroy_all' => 'cart_items#destroy_all'
     post 'cart_items/confirm' => 'cart_items#confirm', as: 'cart_items_confirm'
@@ -37,7 +42,7 @@ Rails.application.routes.draw do
     post 'orders/confirm' => 'orders#confirm', as: 'orders_confirm'
     get 'orders/complete' => 'orders#complete', as: 'orders_complete'
     resources :orders
-    resources :comments
+
 
   end
 

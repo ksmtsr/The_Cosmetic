@@ -2,13 +2,15 @@ class Public::CommentsController < ApplicationController
 
   def new
     @comments = Comment.new
+    @item_id = params[:item_id]
   end
 
   def create
     @comments = Comment.new(comment_params)
     @comments.customer_id = current_customer.id
+    @comments.item_id = params[:item_id]
     @comments.save
-    redirect_to comments_path
+    redirect_to item_comments_path(current_customer.id)
   end
 
   def index
