@@ -1,32 +1,7 @@
-<!--<div class="container">-->
-<!--  <div class="text-center">-->
-<!--    <div class="font-weight-bold h2 mt-5 mb-5">-->
-<!--    注文履歴一覧-->
-<!--    </div>-->
-<!--    <div class="border">-->
-<!--    <%# @orders.each do |order| %>-->
-<!--      <div class="row justify-content-center mt-5 mb-5">-->
-<!--        <div class="col-md-4">-->
-<!--          <%# if order.image.attached? %>-->
-<!--          <%#= image_tag order.item.image, size: "200x200" %>-->
-<!--          <%# end %>-->
-<!--        </div>-->
-<!--        <div class="col-md-4">-->
-<!--        <div class="h3 font-weight-bold"><%#= order.name %></br></div>-->
-<!--          <div class="mt-5 h5">-->
-<!--           &yen;<%#= order.item.with_tax_price %><span>（税込）</span>-->
-<!--          </div>-->
-<!--      </div>-->
-<!--      </div>-->
-<!--      <%# end %>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
 <div class="container">
-  <div class="mt-5 mb-5">
-    <headline>注文履歴一覧</headline>
-     </div>
+  <div class="font-weight-bold h2 mt-5 mb-5 text-center">
+    注文履歴一覧
+  </div>
    <table class="table table-bordered">
   <thead>
  <tr bgcolor="#f5f5f5">
@@ -39,7 +14,8 @@
    <% @orders.each do |order| %>
     <tr>
       <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-       <td><%= order.address %></br>
+       <td><%= order.postal_code %>
+       <%= order.address %></br>
        <%= order.name %></td>
        <td>
          <% order.order_details.each do |order_detail| %>

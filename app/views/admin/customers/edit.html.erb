@@ -6,10 +6,6 @@
     <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
       <table class="table table-borderless">
     <tr>
-        <td class="text-left">会員ID</td>
-        <td class="text-left"><%= f.text_field :id %></td>
-    </tr>
-    <tr>
         <td class="text-left">氏名</td>
         <td class="text-left"><%= f.text_field :last_name, class: "col-auto" %>
         <%= f.text_field :first_name, class: "col-auto" %></td>

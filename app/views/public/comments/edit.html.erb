@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="font-weight-bold h2 mt-5 mb-5 text-center">
+    口コミ編集
+  </div>
+  <div class="row justify-content-center">
+    <%= form_with model: @comment, url: item_comment_path, method: :patch  do |f| %>
+    <div id="post_raty" style="width: 150px"></div>
+          <script>
+          var elem = document.getElementById('post_raty');
+          var opt = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              half: true,
+              scoreName: 'comment[star]'
+            };
+            raty(elem,opt);
+          </script>
+      <%= f.text_area :review, size: "40x10" %></br>
+      <div class="text-center">
+      <%= f.submit "変更を保存", class: "btn btn-lg btn-info mt-5"%>
+      </div>
+    <% end %>
+  </div>
+</div>

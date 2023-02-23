@@ -1,11 +1,11 @@
-<h2 class="text-center mb-5">Item Ranking</h2>
+<h2 class="text-center mb-5">Items</h2>
   <div class="container">
     <div class="row justify-content-center">
       <% @items.each do |item| %>
       <div class="col-4">
       <%= link_to item_path(item) do %>
         <% if item.image.attached? %>
-            <%= image_tag item.image, size: "250x200", class: "pl-2" %>
+            <%= image_tag item.image, size: "200x200" %>
           <% end %>
         <% end %>
         <p><%= item.name %></p>

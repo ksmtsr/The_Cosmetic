@@ -22,10 +22,12 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about', as: 'about'
     get 'item/:id' => 'items#show', as: 'item'
     get 'items' => 'items#index', as: 'items'
+    get 'comments/:id/edit' => 'customers#comments', as: 'comments_edit'
+    get 'comments' => 'customers#comments', as: 'comments'
 
     resources :items do
-    resources :comments
-  end
+      resources :comments
+    end
 
 
 
@@ -49,6 +51,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :customers
+    get 'comments' => 'customers#comments', as: 'customer_comments'
+    resources :comments
 
     resources :orders do
     resources :order_details

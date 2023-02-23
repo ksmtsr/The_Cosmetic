@@ -1,6 +1,6 @@
 <div class="container">
   <div class="font-weight-bold h2 mt-5 mb-5 text-center">
-    注文履歴詳細
+    <%= @customer.full_name%>さんの注文履歴詳細
   </div>
   <div class="row pr-5 border-bottom">
     <div class="col-md-4"></div>
@@ -27,8 +27,8 @@
     <div class="col-md-4"></div>
       <div class="col-md-3 font-weight-bold">注文ステータス</div>
       <div class="col-md-3 mb-3">
-        <%= form_with model: @order, url: admin_order_path do |f| %>
-        <%= f.select :status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
+        <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
+        <%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
         <%= f.submit "更新", class:"btn btn-sm btn-success" %>
         <% end %>
       </div>

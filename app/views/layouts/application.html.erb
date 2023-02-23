@@ -3,6 +3,8 @@
   <head>
     <title>TheCosmetic</title>
 
+    <script src="https://kit.fontawesome.com/3e48c8f6cb.js" crossorigin="anonymous"></script>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -23,9 +25,8 @@
         </div>
       </div>
     </div>
-  </div>
   <div class="menu">
-<%= link_to "Guest Login", customers_guest_sign_in_path, method: :post, class: "text-decoration-none text-secondary pl-5" %>
+<%= link_to "Home","/",class:"fa-solid fa-house text-decoration-none text-secondary mt-5" %>
   </div>
     <div class="text-center mt-4 mb-4">
       <% if admin_signed_in? %>
@@ -39,6 +40,7 @@
         <div class="menu">
           <%= link_to "My page", customers_path, class: "text-decoration-none text-secondary mr-5" %>
           <%= link_to "Items", items_path, class: "text-decoration-none text-secondary mr-5" %>
+          <%= link_to "review", comments_path, class: "text-decoration-none text-secondary mr-5" %>
           <%= link_to "Cart Item", cart_items_path, class: "text-decoration-none text-secondary mr-5" %>
           <%= link_to 'Log out', destroy_customer_session_path, method: :delete, class: "text-decoration-none text-secondary mr-5" %>
         </div>
@@ -48,11 +50,15 @@
           <%= link_to "Items", items_path, class: "text-decoration-none text-secondary mr-5" %>
           <%= link_to "Sign up", new_customer_registration_path, class: "text-decoration-none text-secondary mr-5" %>
           <%= link_to "Log in", new_customer_session_path, class: "text-decoration-none text-secondary mr-5" %>
+          <%= link_to "Guest Login", customers_guest_sign_in_path, method: :post, class: "text-decoration-none text-secondary" %>
         </div>
       <% end %>
     </div>
+    </div>
 </header>
 <body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 <%= yield %>
 </body>
 </html>
