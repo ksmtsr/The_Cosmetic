@@ -40,10 +40,7 @@
         <td class="text-left"><%= f.text_field :telephone_number, class: "col-auto" %></td>
     </tr>
     <tr>
-        <td class="text-left">パスワード
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> 文字以上)</em></td>
-        <% end %>
+        <td class="text-left">パスワード(6文字以上)</td>
         <br />
         <td class="text-left"><%= f.password_field :password, class: "col-auto", autocomplete: "new-password"%></td>
     </tr>

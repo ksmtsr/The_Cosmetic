@@ -2,6 +2,13 @@
   <div class="font-weight-bold h2 mt-5 mb-5 text-center">
     会員情報編集
   </div>
+  <%if @customer.errors.any? %>
+     <%= @customer.errors.count %>件のエラーが発生しました
+    <% @customer.errors.full_messages.each do |message| %>
+ <li><%= message %></li>
+    <% end %>
+    </ul>
+    <% end %>
   <div class="row justify-content-center">
     <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
       <table class="table table-borderless">
@@ -30,18 +37,6 @@
     <tr>
         <td class="text-left">電話番号(ハイフン無し)</td>
         <td class="text-left"><%= f.text_field :telephone_number, class: "col-auto" %></td>
-    </tr>
-    <tr>
-        <td class="text-left">パスワード
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> 文字以上)</em></td>
-        <% end %>
-        <br />
-        <td class="text-left"><%= f.password_field :password, class: "col-auto", autocomplete: "new-password"%></td>
-    </tr>
-    <tr>
-        <td class="text-left">パスワード(確認用)</td>
-        <td class="text-left"><%= f.password_field :password_confirmation, class: "col-auto", autocomplete: "new-password" %></td>
     </tr>
     <tr>
         <td class="text-left">会員ステータス</td>

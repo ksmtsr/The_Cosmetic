@@ -1,6 +1,14 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_customer!, except: [:top, :about]
+  #before_action :authenticate_customer!, except: [:top, :about]
+  before_action :authenticate_admin!, if: :admin_url
+
+  def admin_url
+    request.fullpath.include?("/admin")
+  end
+
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+
 
   add_flash_types :success, :info, :warning, :danger
 
@@ -34,7 +42,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name,
-    :first_name_kana, :last_name_kana, :email, :address, :postal_code, :telephone_number])
+    :first_name_kana, :last_name_kana, :email, :address, :postal_code, :telephone_number, :password_confirmation])
 
     devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
 
