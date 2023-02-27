@@ -18,10 +18,14 @@
       <div class="col-8 mt-5 pl-5">
         &yen;<%= @item.with_tax_price %><span>（税込）</span>
       </div>
-      <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
-        <%= f.select :amount, *[1..20],{ include_blank: '個数選択'}, class: "btn-sm btn-info dropdown-toggle mt-5 " %>
-          <%= f.hidden_field :item_id,value: @item.id %>
-        <%= f.submit "カートに入れる", class: "btn-sm btn-secondary mt-5" %>
+      <% if @item.is_active == true %>
+        <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+          <%= f.select :amount, *[1..20],{ include_blank: '個数選択'}, class: "btn-sm btn-info dropdown-toggle mt-5 " %>
+            <%= f.hidden_field :item_id,value: @item.id %>
+          <%= f.submit "カートに入れる", class: "btn-sm btn-secondary mt-5" %>
+        <% end %>
+      <% else %>
+      販売停止中です
       <% end %>
     </div>
   </div>
