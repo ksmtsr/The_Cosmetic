@@ -3,9 +3,9 @@
     <div class="font-weight-bold h2 mt-5 mb-5">
     会員一覧
     </div>
-    <div class="text-left mb-3">
-      <%= link_to "商品レビュー履歴", admin_customer_comments_path(@comments), class: "btn btn-outline-info" %>
-    </div>
+      <div class="text-left mb-3">
+        <%= link_to "商品レビュー履歴", admin_customer_comments_path(@comments), class: "btn btn-outline-info" %>
+      </div>
       <table class="table table-bordered mb-5">
         <th class="col-md-2">会員ID</th>
         <th class="col-md-4">氏名</th>
@@ -17,5 +17,6 @@
         <td><%= customer.email %></td>
       </tr>
       <% end %>
-    </table>
+      </table>
+  </div>
 </div>

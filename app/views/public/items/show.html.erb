@@ -2,15 +2,15 @@
   <div class="row justify-content-center">
     <div class="col-md-4 mt-5 mb-5">
       <div class="mt-5"></div>
-      <%= image_tag @item.image, size: "350x250" %>
+        <%= image_tag @item.image, size: "350x250" %>
     </div>
     <div class="col-4 mt-5">
       <div class="mt-5"></div>
-      <span class="h4 font-weight-bold">
-        <%= @item.name %>
-      </span>
-      <span classs="button">
-        <%= link_to "口コミを投稿する", new_item_comment_path(@item), class: "btn btn-sm btn-outline-info" %>
+        <span class="h4 font-weight-bold">
+          <%= @item.name %>
+        </span>
+        <span classs="button">
+          <%= link_to "口コミを投稿する", new_item_comment_path(@item), class: "btn btn-sm btn-outline-info" %>
         </span>
       <div class="text-left mt-3">
         <%= @item.introduction %>

@@ -5,33 +5,34 @@
   <div class="row pr-5 border-bottom">
     <div class="col-md-4"></div>
       <div class="col-md-3 font-weight-bold">購入者</div>
-      <div class="col-md-3 mb-3">
-        <%= @order.customer.full_name %>
-      </div>
+        <div class="col-md-3 mb-3">
+          <%= @order.customer.full_name %>
+        </div>
     <div class="col-md-4"></div>
       <div class="col-md-3 font-weight-bold">注文日</div>
-      <div class="col-md-3 mb-3">
-        <%= @order.created_at.strftime('%Y/%m/%d') %>
-      </div>
+        <div class="col-md-3 mb-3">
+          <%= @order.created_at.strftime('%Y/%m/%d') %>
+        </div>
     <div class="col-md-4"></div>
       <div class="col-md-3 font-weight-bold">配送先</div>
-      <div class="col-md-3 mb-3">
-        〒<%= @order.postal_code %>
-        <%= @order.address %></br>
-        <%= @order.name %></div>
+        <div class="col-md-3 mb-3">
+          〒<%= @order.postal_code %>
+          <%= @order.address %></br>
+          <%= @order.name %>
+        </div>
     <div class="col-md-4"></div>
       <div class="col-md-3 font-weight-bold">支払い方法</div>
-      <div class="col-md-3 mb-3">
-        <%= @order.payment_method_i18n %>
-      </div>
+        <div class="col-md-3 mb-3">
+          <%= @order.payment_method_i18n %>
+        </div>
     <div class="col-md-4"></div>
       <div class="col-md-3 font-weight-bold">注文ステータス</div>
-      <div class="col-md-3 mb-3">
-        <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
-        <%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
-        <%= f.submit "更新", class:"btn btn-sm btn-success" %>
-        <% end %>
-      </div>
+        <div class="col-md-3 mb-3">
+          <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
+            <%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
+            <%= f.submit "更新", class:"btn btn-sm btn-success" %>
+          <% end %>
+        </div>
   </div>
   <% sum = 0 %>
   <% @order_details.each do |order_detail| %>
@@ -64,5 +65,5 @@
     </tr>
   </table>
   </div>
-  </div>
+</div>
 

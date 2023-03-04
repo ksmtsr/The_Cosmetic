@@ -3,15 +3,15 @@
     <div class="row justify-content-center">
       <% @items.each do |item| %>
       <div class="col-4">
-      <%= link_to item_path(item) do %>
-        <% if item.image.attached? %>
+        <%= link_to item_path(item) do %>
+          <% if item.image.attached? %>
             <%= image_tag item.image, size: "200x200" %>
           <% end %>
         <% end %>
         <p><%= item.name %></p>
         <p>¥<%= item.price %></p>
       </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
   <%= paginate @items %>
