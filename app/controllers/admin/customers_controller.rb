@@ -1,5 +1,4 @@
 class Admin::CustomersController < ApplicationController
-
   def new
     @customers = Customer.new
   end
@@ -19,10 +18,10 @@ class Admin::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-    bypass_sign_in(@customer)
-    redirect_to admin_customer_path(@customer.id)
+      bypass_sign_in(@customer)
+      redirect_to admin_customer_path(@customer.id)
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -31,9 +30,7 @@ class Admin::CustomersController < ApplicationController
   end
 
   private
-
-  def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :last_name_kana, :first_name_kana, :email, :postal_code,:address, :telephone_number, :is_deleted)
-  end
-
+    def customer_params
+      params.require(:customer).permit(:first_name, :last_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :is_deleted)
+    end
 end

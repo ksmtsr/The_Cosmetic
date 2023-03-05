@@ -1,5 +1,4 @@
 class Public::CommentsController < ApplicationController
-
   def new
     @comments = Comment.new
     @item_id = params[:item_id]
@@ -10,7 +9,7 @@ class Public::CommentsController < ApplicationController
     @comments.customer_id = current_customer.id
     @comments.item_id = params[:item_id]
     if @comments.save
-    redirect_to item_comments_path(current_customer.id),notice:"口コミを投稿しました"
+      redirect_to item_comments_path(current_customer.id), notice: "口コミを投稿しました"
     else
       render :new
     end
@@ -18,13 +17,13 @@ class Public::CommentsController < ApplicationController
 
   def comments
     if params[:latest]
-     @comments = Comment.latest
+      @comments = Comment.latest
     elsif params[:old]
-     @comments = Comment.old
+      @comments = Comment.old
     elsif params[:star_count]
-     @comments = Comment.star_count
+      @comments = Comment.star_count
     else
-     @comments = Comment.all
+      @comments = Comment.all
     end
   end
 
@@ -43,7 +42,7 @@ class Public::CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
-      redirect_to item_comments_path(current_customer.id),notice:"変更を保存しました"
+      redirect_to item_comments_path(current_customer.id), notice: "変更を保存しました"
     else
       redirect_to edit_admin_comment_path(@comments)
     end
@@ -51,8 +50,7 @@ class Public::CommentsController < ApplicationController
 
 
   private
-
-  def comment_params
-    params.require(:comment).permit(:review, :customer_id, :item_id, :star)
-  end
+    def comment_params
+      params.require(:comment).permit(:review, :customer_id, :item_id, :star)
+    end
 end

@@ -1,5 +1,4 @@
 class OrderDetail < ApplicationRecord
-
   has_one_attached :image
 
   belongs_to :order
@@ -12,5 +11,4 @@ class OrderDetail < ApplicationRecord
   def subtotal
     item.with_tax_price * amount
   end
-
 end

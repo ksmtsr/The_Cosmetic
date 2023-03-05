@@ -1,5 +1,4 @@
 class Public::CustomersController < ApplicationController
-
   def show
     @customer = current_customer
   end
@@ -24,40 +23,37 @@ class Public::CustomersController < ApplicationController
 
   def edit
     @customer = current_customer
-      if @customer == current_customer
-            render "edit"
-      else
-            redirect_to customer_path
-      end
+    if @customer == current_customer
+      render "edit"
+    else
+      redirect_to customer_path
+    end
   end
 
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-    bypass_sign_in(@customer)
-    redirect_to customers_path
+      bypass_sign_in(@customer)
+      redirect_to customers_path
     else
-      render 'edit'
+      render "edit"
     end
   end
 
   def comments
     if params[:latest]
-     @comments = Comment.latest
+      @comments = Comment.latest
     elsif params[:old]
-     @comments = Comment.old
+      @comments = Comment.old
     elsif params[:star_count]
-     @comments = Comment.star_count
+      @comments = Comment.star_count
     else
-     @comments = Comment.all
+      @comments = Comment.all
     end
   end
 
   private
-
-  def customer_params
-    params.require(:customer).permit(:last_name, :first_name_kana,:first_name, :last_name_kana,:email, :postal_code,:address, :telephone_number, :password, :password_confirmation )
-  end
-
-
+    def customer_params
+      params.require(:customer).permit(:last_name, :first_name_kana, :first_name, :last_name_kana, :email, :postal_code, :address, :telephone_number, :password, :password_confirmation)
+    end
 end

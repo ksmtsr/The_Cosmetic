@@ -28,7 +28,6 @@
           <%= comment.review %></br>
           <%= image_tag comment.item.image, size: "250x200", class: "mt-3 mb-3" %></br>
           <%= comment.item.name %>
-          <%= link_to "編集", edit_item_comment_path(comment.item_id, comment), class: "text-right" %>
         </div>
       </div>
       <% end %>

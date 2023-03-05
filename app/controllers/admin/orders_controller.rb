@@ -1,6 +1,4 @@
 class Admin::OrdersController < ApplicationController
-
-
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
@@ -17,9 +15,7 @@ class Admin::OrdersController < ApplicationController
 
 
   private
-
-  def order_params
-    params.require(:order).permit(:customer_id, :item_id, :tax_included_price, :amount, :making_status, :payment_method, :order_status, :image )
-  end
-
+    def order_params
+      params.require(:order).permit(:customer_id, :item_id, :tax_included_price, :amount, :making_status, :payment_method, :order_status, :image)
+    end
 end

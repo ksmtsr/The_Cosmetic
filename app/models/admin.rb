@@ -5,7 +5,7 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def address_display
-  "〒" + postal_code + " " + address + " " + name
+    "〒" + postal_code + " " + address + " " + name
   end
 
   def full_name
