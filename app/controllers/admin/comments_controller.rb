@@ -1,4 +1,5 @@
 class Admin::CommentsController < ApplicationController
+
   def edit
     @comment = Comment.find(params[:id])
     @item_id = params[:item_id]

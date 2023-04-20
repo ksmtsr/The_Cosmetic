@@ -27,7 +27,6 @@ Rails.application.routes.draw do
     end
 
 
-
     delete "cart_item/destroy_all" => "cart_items#destroy_all"
     post "cart_items/confirm" => "cart_items#confirm", as: "cart_items_confirm"
     resources :cart_items

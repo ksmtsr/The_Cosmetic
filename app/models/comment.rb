@@ -8,6 +8,8 @@ class Comment < ApplicationRecord
   scope :old, -> { order(created_at: :asc) }
   scope :star_count, -> { order(star: :desc) }
 
+validates :review, presence: true
+
   def full_name
     self.last_name + self.first_name
   end

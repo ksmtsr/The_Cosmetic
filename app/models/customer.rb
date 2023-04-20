@@ -7,13 +7,14 @@ class Customer < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :first_name_kana, presence: true
-  validates :last_name_kana, presence: true
-  validates :postal_code, presence: true
+  validates :first_name_kana, presence: true, format: { with: /\A[ｧ-ﾝﾞﾟァ-ヶー－]+\z/,message: "全角カタカナのみで入力して下さい" }
+  validates :last_name_kana, presence: true, format: { with: /\A[ｧ-ﾝﾞﾟァ-ヶー－]+\z/,message: "全角カタカナのみで入力して下さい" }
+  validates :postal_code, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
   validates :address, presence: true
-  validates :telephone_number, presence: true
+  validates :telephone_number, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
   validates :password, presence: true, confirmation: true, length: { minimum: 6 }, on: :create
   validates :password_confirmation, confirmation: true, on: :create
+
 
 
   has_many :cart_items, dependent: :destroy
