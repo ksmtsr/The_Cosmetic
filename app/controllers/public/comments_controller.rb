@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+   before_action :is_matching_login_customer, only: [:edit, :update]
+
   def new
     @comments = Comment.new
     @item_id = params[:item_id]
@@ -49,8 +51,19 @@ class Public::CommentsController < ApplicationController
   end
 
 
+
   private
+
+    def is_matching_login_customer
+      comment = Comment.find(params[:id])
+      customer = comment.customer
+      unless customer.id == current_customer.id
+        redirect_to customers_path
+      end
+    end
+
     def comment_params
       params.require(:comment).permit(:review, :customer_id, :item_id, :star)
     end
+
 end
