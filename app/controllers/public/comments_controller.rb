@@ -13,6 +13,7 @@ class Public::CommentsController < ApplicationController
     if @comments.save
       redirect_to item_comments_path(current_customer.id), notice: "口コミを投稿しました"
     else
+      @item_id = params[:item_id]
       render :new
     end
   end

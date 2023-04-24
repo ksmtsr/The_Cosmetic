@@ -2,9 +2,22 @@
   <div class="font-weight-bold h2 mt-5 mb-5 text-center">
     口コミ投稿
   </div>
+  <div class="text-center">
+    <% if @comments.errors.any? %>
+    <div>
+      <%= @comments.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @comments.errors.full_messages.each do |message| %>
+          <%= message %></br>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
   <div class="row justify-content-center">
-  <%= form_with model: @comments, url: item_comments_path(@item_id), method: :post do |f| %>
+  <%= form_with model: @comments, url: item_comments_path(@item_id), method: :post, class: "form-comment" do |f| %>
     <div class="col-md-5 mt-5">
+      <div class="text-left font-weight-bold">商品レビュー</div>
       <div id="post_raty" style="width: 150px"></div>
           <script>
           var elem = document.getElementById('post_raty');
@@ -18,12 +31,12 @@
             };
             raty(elem,opt);
           </script>
-      <%= f.label :商品レビュー %>
-      <%= f.text_area :review, style: "width:300%", rows: "8" %>
+      <%= f.text_area :review, style: "width:200%", rows: "8" %>
     </div>
+  </div>
     <div class="text-center">
       <%= f.submit "口コミを投稿する", class:"btn btn-info rounded-pill mb-5 mt-5" %>
     </div>
   <% end %>
-  </div>
+
 </div>
