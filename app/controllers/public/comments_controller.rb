@@ -34,6 +34,15 @@ class Public::CommentsController < ApplicationController
     @comments = current_customer.comments
     @customer = current_customer
     @item_id = params[:item_id]
+    if params[:latest]
+      @comments = Comment.latest
+    elsif params[:old]
+      @comments = Comment.old
+    elsif params[:star_count]
+      @comments = Comment.star_count
+    else
+      @comments = Comment.all
+    end
   end
 
   def edit
